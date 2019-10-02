@@ -37,29 +37,37 @@ class Robot():
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
 
         vG = self.motorLeft.w
+        print("DK vG", vG)
         vD = self.motorRight.w
+        print("DK vD", vD)
 
         self.vLin = Motor.R*(vG - vD) / 2
+        print("DK vLin", self.vLin)
         self.vTheta = Motor.R*(vG + vD) / (self.d)
-
-        print(self.vLin)
-        # print("1", self.dTheta)
+        print("DK vTheta", self.vTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
         self.dTheta = self.vTheta * Robot.dt
+        print("odom dTheta", self.dTheta)
         dL = self.vLin * Robot.dt
+        print("odom vLin", self.vLin)
         #projection du deplacement dL dans le repere monde
         self.dx = dL * cos(self.theta + self.dTheta)
+        print("odom dx", self.dx)
         self.dy = dL * sin(self.theta + self.dTheta)
+        print("odom dy", self.dy)
 
     def tick_odom(self):
         #MAJ des parametres dans le repere monde
         self.DK()
         self.odom()
         self.x += self.dx
+        print("tick_odom x", self.x)
         self.y += self.dy
+        print("tick_odom y", self.y)
         self.theta += self.dTheta
+        print("tick_odom theta", self.theta)
 
     def move_straight_forward(self, speed):
         motorG = self.motorLeft
