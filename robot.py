@@ -53,20 +53,54 @@ class Robot():
         self.x += self.dx
         self.y += self.dy
         self.theta += self.dTheta
+    
+    def move_straight_forward(self, speed):
+        motorG = self.motorLeft
+        motorD = self.motorRight
+        dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
+        motorG.w = speed
+        motorD.w = -speed
+    
+    def move_straight_backward(self, speed):
+        motorG = self.motorLeft
+        motorD = self.motorRight
+        dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
+        motorG.w = -speed
+        motorD.w = speed
+    
+    
+    #Convert linear speed and angular speed into speed for Left engine and Right engine
+    #d is the distance between the two wheels. It's given in the Robot class
+    #vLin, vTheta are linear speed and angular speed of the Robot. They are given in the Robot Class
+    def IK(self):
+        vLin = self.vLin
+        vTheta = self.vTheta
+        d = self.d
+        self.motorLeft.w = (vLin + vTheta*d/2) / Motor.R
+        self.motorRight.w  = (vLin - vTheta*d/2) / Motor.R
+    
+    #Based on speeds given by IK we set the speed of each motor
+    def move(self, vG, vD):
+        motorG = self.motorLeft
+        motorD = self.motorRight
+        dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
+        motorG.w = vG
+        motorD.w = vD 
         
+    def rotate(self, alpha):
+        if alpha > 0:
+            self.move(-Robot.baseSpeed, -Robot.baseSpeed)
+        else:
+            self.move(Robot.baseSpeed, Robot.baseSpeed)
+    
     def go_to_xya(x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
         l = sqrt(pow(x_c, 2) + pow(y_c, 2))
         #on effectue la boucle tant qu'on la position du robot ne correspond pas a la cible
         while(self.theta != alpha):
-            start_time = time.clock()
+            self.rotate(alpha)
             self.tick_odom()
-            self.move(Robot.baseSpeed)
-            stop_time = time.clock()
-            delta_t = stop_time - start_time
-            if(delta_t > Robot.dt):
-                break
-            
+        
                 
                 
             
