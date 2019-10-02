@@ -35,16 +35,14 @@ class Robot():
     def DK(self):
         #convertit les vitesses angulaires (rad/s) du moteur gauche vG et du moteur droit vD dans le repere monde
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
-        print(self.motorLeft.w, self.motorRight.w)
 
         vG = self.motorLeft.w
         vD = self.motorRight.w
 
-        print(vG, vD)
-        
         self.vLin = Motor.R*(vG + vD) / 2
         self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
 
+        print(self.vTheta)
         # print("1", self.dTheta)
 
     def odom(self):
