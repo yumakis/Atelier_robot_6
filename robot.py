@@ -15,9 +15,9 @@ class Robot():
         self.y = 0
         self.theta = 0
 
-        #vitesse lineaire dans le repere du monde
+        #vitesse lineaire dans le repere du monde en m/s
         self.vLin = 0
-        #vitesse angulaire dans le repere du monde
+        #vitesse angulaire dans le repere du monde rad/s
         self.vTheta = 0
 
         #coordonnees du robot dans le repere robot  a l instant t
@@ -73,6 +73,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
+        speed = Motor.rpmToRps(speed)
         motorG.w = speed
         motorD.w = -speed
 
@@ -80,6 +81,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
+        speed = Motor.rpmToRps(speed)
         motorG.w = -speed
         motorD.w = speed
 
@@ -104,6 +106,8 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
+        vG = Motor.rpmToRps(vG)
+        vD = Motor.rpmToRps(vD)
         motorG.w = vG
         motorD.w = vD
 
@@ -126,7 +130,7 @@ class Robot():
             time.sleep(Robot.dt)
             # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
-            print("goto abs(self.x)", abs(self.x))
+            print("goto abs(self.x)", abs(x_c))
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
