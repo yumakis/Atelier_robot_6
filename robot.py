@@ -106,8 +106,8 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
-        vG = Motor.rpmToRps(vG)
-        vD = Motor.rpmToRps(vD)
+        vG = Motor.rpmToRps(motorG, vG)
+        vD = Motor.rpmToRps(motorD, vD)
         motorG.w = vG
         motorD.w = vD
 
