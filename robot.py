@@ -57,14 +57,14 @@ class Robot():
     def move_straight_forward(self, speed):
         motorG = self.motorLeft
         motorD = self.motorRight
-        dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
+        Motor.dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
         motorG.w = speed
         motorD.w = -speed
 
     def move_straight_backward(self, speed):
         motorG = self.motorLeft
         motorD = self.motorRight
-        dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
+        Motor.dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
         motorG.w = -speed
         motorD.w = speed
 
@@ -83,7 +83,7 @@ class Robot():
     def move(self, vG, vD):
         motorG = self.motorLeft
         motorD = self.motorRight
-        dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
+        Motor.dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
         motorG.w = vG
         motorD.w = vD
 
