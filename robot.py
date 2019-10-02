@@ -4,6 +4,7 @@ import time
 
 class Robot():
     coef = 0.05
+    baseSpeed = 10
     def __init__(self):
         #coordonnees du robot dans le repere du monde
         self.x = 0
