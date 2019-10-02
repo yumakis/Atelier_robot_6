@@ -81,10 +81,15 @@ class Robot():
     #vLin, vTheta are linear speed and angular speed of the Robot. They are given in the Robot Class
     def IK(self):
         vLin = self.vLin
+        print("IK vLin", vLin)
         vTheta = self.vTheta
+        print("IK vTheta", vTheta)
         d = self.d
+        print("IK d", d)
         self.motorLeft.w = (vLin + vTheta*d/2) / Motor.R
+        print("IK self.motorLeft.w", self.motorLeft.w)
         self.motorRight.w  = (-vLin + vTheta*d/2) / Motor.R
+        print("IK self.motorRight.w", self.motorRight.w)
 
     #Based on speeds given by IK we set the speed of each motor
     def move(self, vG, vD):
@@ -96,6 +101,7 @@ class Robot():
 
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
+        print("rotate alpha", alpha)
         if alpha > 0:
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
         else:
@@ -103,17 +109,21 @@ class Robot():
 
     def go_to_xya(self,x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
+        print("goto alpha", alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(self.theta) <= abs(alpha)):
+            print("goto abs(self.theta)", abs(self.theta))
             self.rotate(alpha)
             self.tick_odom()
             time.sleep(Robot.dt)
             # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
+            print("goto abs(self.x)", abs(self.x))
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
         while(abs(self.theta - alpha) <= abs(theta_c)):
+            print("goto abs(self.y)", abs(self.y))
             self.rotate(theta_c)
             self.tick_odom()
             time.sleep(Robot.dt)
