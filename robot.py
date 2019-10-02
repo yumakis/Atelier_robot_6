@@ -15,9 +15,9 @@ class Robot():
         self.y = 0
         self.theta = 0
 
-        #vitesse lineaire dans le repere du monde
+        #vitesse lineaire dans le repere du monde en m/s
         self.vLin = 0
-        #vitesse angulaire dans le repere du monde
+        #vitesse angulaire dans le repere du monde rad/s
         self.vTheta = 0
 
         #coordonnees du robot dans le repere robot  a l instant t
@@ -73,6 +73,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
+        speed = Motor.rpmToRps(speed)
         motorG.w = speed
         motorD.w = -speed
 
@@ -80,6 +81,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
+        speed = Motor.rpmToRps(speed)
         motorG.w = -speed
         motorD.w = speed
 
@@ -104,6 +106,8 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : vG, motorD.id : vD})
+        vG = Motor.rpmToRps(motorG, vG)
+        vD = Motor.rpmToRps(motorD, vD)
         motorG.w = vG
         motorD.w = vD
 
@@ -140,3 +144,4 @@ class Robot():
             self.rotate(theta_c-self.theta)
             self.tick_odom()
             time.sleep(Robot.dt)
+        self.move(0, 0)
