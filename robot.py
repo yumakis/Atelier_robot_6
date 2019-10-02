@@ -7,6 +7,8 @@ class Robot():
     dt = 0.100 #en secondes
     baseSpeed = 10 #vitesse en rpm
 
+    coeff = 0.05
+    
     def __init__(self):
         #coordonnees du robot dans le repere du monde
         self.x = 0
