@@ -120,7 +120,11 @@ class Robot():
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
     def go_to_xya(self,x_c, y_c, theta_c):
-        alpha = tan(y_c/x_c)
+        self.tick_odom()
+        x_0 = self.x
+        y_0 = self.y
+        #angle en rad de rotation dans le repère monde signé 
+        alpha = tan((y_c - y_0)/(x_c - x_0))
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(abs(self.theta)-abs(alpha)) > 0.17):
