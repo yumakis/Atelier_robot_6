@@ -107,10 +107,13 @@ class Robot():
         while(abs(self.theta) <= abs(alpha)):
             self.rotate(alpha)
             self.tick_odom()
+            time.sleep(Robot.dt)
             # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
+            time.sleep(Robot.dt)
         while(abs(self.theta - alpha) <= abs(theta_c)):
             self.rotate(theta_c)
             self.tick_odom()
+            time.sleep(Robot.dt)
