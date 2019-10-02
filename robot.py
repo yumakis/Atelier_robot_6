@@ -42,7 +42,7 @@ class Robot():
         self.vLin = Motor.R*(vG + vD) / 2
         self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
 
-        print(self.vTheta)
+        print(self.vLin)
         # print("1", self.dTheta)
 
     def odom(self):
