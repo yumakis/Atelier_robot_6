@@ -4,7 +4,7 @@ import pypot.dynamixel as pdn
 class Motor():
     #la vitesse en rpm des moteurs est un multiple de ce coeff
     COEFF = 1.339
-    #rayon de la roue du robot en mètres
+    #rayon de la roue du robot en metres
     R = 0.026
 
     def __init__(self, id):
