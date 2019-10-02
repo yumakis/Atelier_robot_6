@@ -41,10 +41,18 @@ class Robot():
         vD = self.motorRight.w
         # print("DK vD", vD)
 
-        self.vLin = Motor.R*(vG - vD) / 2
-        # print("DK vLin", self.vLin)
-        self.vTheta = Motor.R*(vG + vD) / (self.d)
-        # print("DK vTheta", self.vTheta)
+        if(vG>=0 and vD>=0): #on tourne a droite en avancant
+            self.vLin = Motor.R*(vG + vD) / 2
+            self.vTheta = Motor.R*(vG - vD) / (self.d)
+        else:
+            if(vG<=0 and vD<=0): #on tourne a gauche en avancant
+                self.vLin = Motor.R*(vG + vD) / 2
+                self.vTheta = Motor.R*(vD - vG) / (self.d)
+            else: #on avance ou on recule en ligne droite
+                self.vLin = Motor.R*(vG - vD) / 2
+                # print("DK vLin", self.vLin)
+                self.vTheta = Motor.R*(vG + vD) / (self.d)
+                # print("DK vTheta", self.vTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
@@ -95,11 +103,15 @@ class Robot():
         vTheta = self.vTheta
         # print("IK vTheta", vTheta)
         d = self.d
-        # print("IK d", d)
-        self.motorLeft.w = (vLin + vTheta*d/2) / Motor.R
-        # print("IK self.motorLeft.w", self.motorLeft.w)
-        self.motorRight.w  = (-vLin + vTheta*d/2) / Motor.R
-        # print("IK self.motorRight.w", self.motorRight.w)
+        if(vTheta>=0): #on tourne a gauche
+            self.motorLeft.w = (vLin - vTheta*d/2) / Motor.R
+            # print("IK self.motorLeft.w", self.motorLeft.w)
+            self.motorRight.w  = - (vLin + vTheta*d/2) / Motor.R
+            # print("IK self.motorRight.w", self.motorRight.w)
+        else: #on tourne a droite
+            self.motorLeft.w = - (vLin + vTheta*d/2) / Motor.R
+            self.motorRight.w  = (vLin - vTheta*d/2) / Motor.R
+        
 
     #Based on speeds given by IK we set the speed of each motor
     def move(self, vG, vD):
@@ -114,16 +126,16 @@ class Robot():
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
         # print("rotate alpha", alpha)
-        if alpha > 0:
+        if alpha > 0: #on tourne à gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-        else:
+        else: #on tourne à droite 
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
     def go_to_xya(self,x_c, y_c, theta_c):
         self.tick_odom()
         x_0 = self.x
         y_0 = self.y
-        #angle en rad de rotation dans le repère monde signé 
+        #angle en rad de rotation dans le repere monde signe
         alpha = tan((y_c - y_0)/(x_c - x_0))
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
@@ -149,4 +161,3 @@ class Robot():
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
-wwq
