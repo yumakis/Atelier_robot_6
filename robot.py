@@ -3,8 +3,12 @@ from math import *
 import time
 
 class Robot():
-    coef = 0.05
-    baseSpeed = 10
+    #Each dt we analyze one frame of the video dt (t+1 = t + dt)
+    dt = 0.100 #en secondes
+    baseSpeed = 10 #vitesse en rpm
+
+    coeff = 0.05
+
     def __init__(self):
         #coordonnees du robot dans le repere du monde
         self.x = 0
@@ -31,10 +35,15 @@ class Robot():
     def DK(self):
         #convertit les vitesses angulaires (rad/s) du moteur gauche vG et du moteur droit vD dans le repere monde
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
+
         vG = self.motorLeft.w
         vD = self.motorRight.w
+
         self.vLin = Motor.R*(vG + vD) / 2
         self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
+
+        print(self.vLin)
+        # print("1", self.dTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
@@ -98,6 +107,7 @@ class Robot():
         while(abs(self.theta) <= abs(alpha)):
             self.rotate(alpha)
             self.tick_odom()
+            # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
