@@ -7,7 +7,7 @@ class Robot():
     dt = 0.100 #en secondes
     baseSpeed = 10 #vitesse en rpm
 
-    coeff = 0.05
+    coeff = 0.05 #coefficient de coubure
 
     def __init__(self):
         #coordonnees du robot dans le repere du monde
@@ -124,18 +124,23 @@ class Robot():
         print("goto alpha", alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(self.theta) <= abs(alpha)):
-            print("goto abs(self.theta)", abs(self.theta))
+            print("goto self.theta",self.theta)
+            print("goto abs(alpha)", abs(alpha))
             self.rotate(alpha)
             self.tick_odom()
             time.sleep(Robot.dt)
             # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
-            print("goto abs(self.x)", abs(x_c))
+            print("goto abs(self.x)", abs(self.x))
+            print("goto abs(x_c)", abs(x_c))
+            print("goto abs(self.y)", abs(self.y))
+            print("goto abs(y_c)", abs(y_c))
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
         while(abs(self.theta - alpha) <= abs(theta_c)):
-            print("goto abs(self.y)", abs(self.y))
+            print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
+            print("goto abs(theta_c)",theta_c)
             self.rotate(theta_c)
             self.tick_odom()
             time.sleep(Robot.dt)
