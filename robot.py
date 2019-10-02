@@ -144,3 +144,4 @@ class Robot():
             self.rotate(theta_c)
             self.tick_odom()
             time.sleep(Robot.dt)
+        self.move(0, 0)
