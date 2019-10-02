@@ -40,7 +40,7 @@ class Robot():
         vD = self.motorRight.w
 
         self.vLin = Motor.R*(vG - vD) / 2
-        self.vTheta = Motor.R*(vG + vD) / (2 * self.d)
+        self.vTheta = Motor.R*(vG + vD) / (self.d)
 
         print(self.vLin)
         # print("1", self.dTheta)
