@@ -39,8 +39,8 @@ class Robot():
         vG = self.motorLeft.w
         vD = self.motorRight.w
 
-        self.vLin = Motor.R*(vG + vD) / 2
-        self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
+        self.vLin = Motor.R*(vG - vD) / 2
+        self.vTheta = Motor.R*(vG + vD) / (2 * self.d)
 
         print(self.vLin)
         # print("1", self.dTheta)
@@ -84,7 +84,7 @@ class Robot():
         vTheta = self.vTheta
         d = self.d
         self.motorLeft.w = (vLin + vTheta*d/2) / Motor.R
-        self.motorRight.w  = (vLin - vTheta*d/2) / Motor.R
+        self.motorRight.w  = (-vLin + vTheta*d/2) / Motor.R
 
     #Based on speeds given by IK we set the speed of each motor
     def move(self, vG, vD):
