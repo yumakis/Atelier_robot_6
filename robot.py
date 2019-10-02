@@ -95,13 +95,16 @@ class Robot():
     
     def go_to_xya(x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
-        l = sqrt(pow(x_c, 2) + pow(y_c, 2))
         #on effectue la boucle tant qu'on la position du robot ne correspond pas a la cible
-        while(self.theta != alpha):
+        while(abs(self.theta) <= abs(alpha)):
             self.rotate(alpha)
             self.tick_odom()
-        
-                
+        while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
+            self.move_straight_forward(Robot.baseSpeed)
+            self.tick_odom()
+        while(abs(self.theta - alpha) <= abs(theta_c)):
+            self.rotate(theta_c)
+            self.tick_odom()
                 
             
             
