@@ -18,7 +18,7 @@ class Robot():
         #vitesse angulaire dans le repere du monde
         self.vTheta = 0
 
-        #coordonnees du robot dans le repere robot à l'instant t
+        #coordonnees du robot dans le repere robot à l instant t
         self.dx = 0
         self.dy = 0
         self.dTheta = 0
@@ -70,7 +70,7 @@ class Robot():
 
 
     #Convert linear speed and angular speed into speed for Left engine and Right engine
-    #d is the distance between the two wheels. It's given in the Robot class
+    #d is the distance between the two wheels. It s given in the Robot class
     #vLin, vTheta are linear speed and angular speed of the Robot. They are given in the Robot Class
     def IK(self):
         vLin = self.vLin
@@ -96,7 +96,7 @@ class Robot():
 
     def go_to_xya(self,x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
-        #on effectue la boucle tant qu'on la position du robot ne correspond pas a la cible
+        #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(self.theta) <= abs(alpha)):
             self.rotate(alpha)
             self.tick_odom()
