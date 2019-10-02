@@ -17,24 +17,23 @@ while(True and countGreenStart <= 3):
    
     cv2.imshow('frame',hsv)
     #cv2.waitKey(1)
-    """
-    lower_red = np.array([0,39,64])
-    upper_red = np.array([20,255,255])
 
-    lower_blue = np.array([50,50,100])
-    upper_blue = np.array([255,255,130])
+    lower_blue = np.uint8([0,39,64])
+    upper_blue = np.uint8([20,255,255])
+
+    lower_red = np.uint8([50,50,100])
+    upper_red = np.uint8([255,255,130])
     
-    lower_green = np.array([41, 39, 64])
-    upper_green = np.array([80, 255, 255])
+    lower_green = np.uint8([41, 39, 64])
+    upper_green = np.uint8([80, 255, 255])
 
-    lower_yellow = np.array([20,190,20])
-    upper_yellow = np.array([30,255,255])
-    """
+    lower_yellow = np.uint8([10,0,100])
+    upper_yellow = np.uint8([40,170,255])
 
-    lower_range = np.array([0, 80, 0])
-    upper_range = np.array([255, 255, 255])
+    lower_range = np.uint8([0, 80, 0])
+    upper_range = np.uint8([255, 255, 255])
 
-    mask = cv2.inRange(hsv,lower_range, upper_range)
+    mask = cv2.inRange(hsv,lower_red, upper_red)
 
     # Remove noise
     #kernel_erode = np.ones((4,4), np.uint8)
