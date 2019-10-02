@@ -123,7 +123,7 @@ class Robot():
         alpha = tan(y_c/x_c)
         print("goto alpha", alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
-        while(abs(abs(self.theta)-abs(alpha)) <= 0.17):
+        while(abs(abs(self.theta)-abs(alpha)) > 0.17):
             print("goto self.theta",self.theta)
             print("goto abs(alpha)", abs(alpha))
             self.rotate(alpha)
@@ -138,10 +138,11 @@ class Robot():
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
-        while(abs(abs(self.theta)-abs(theta_c)) <= 0.17):
+        while(abs(abs(self.theta)-abs(theta_c)) > 0.17):
             print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
             print("goto abs(theta_c)",theta_c)
             self.rotate(theta_c-self.theta)
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
+wwq
