@@ -16,8 +16,8 @@ class Motor():
 
     def rpmToRps(self,rpm):
         #rpm = round per minute to rps = rad per second
-        return rpm*2*math.pi*Motor.R / 60
+        return rpm*2*math.pi / 60
 
     def rpsToRpm(self, rps):
         #rps = rad per second to rpm = round per minute
-        return rps*60 / 2*math.pi*Motor.R
+        return rps*60 / 2*math.pi

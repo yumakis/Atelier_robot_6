@@ -1,11 +1,11 @@
 import numpy as np
 import cv2
-from robot import Robot
+#from robot import Robot
 
 WIDTH = 640
 HEIGHT = 480
 
-robot = Robot()
+#robot = Robot()
 
 video_capture = cv2.VideoCapture(0)
 video_capture.set(3, WIDTH)
@@ -75,8 +75,8 @@ while(True and countGreenStart <= 3):
     cx = int(M['m10']/M['m00'])
     cy = int(M['m01']/M['m00'])
 
-    delta = Robot.coef * (cx - WIDTH/2)
-    robot.move(Robot.baseSpeed + delta, Robot.baseSpeed - delta)
+    #delta = Robot.coef * (cx - WIDTH/2)
+    #robot.move(Robot.baseSpeed + delta, Robot.baseSpeed - delta)
 
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
