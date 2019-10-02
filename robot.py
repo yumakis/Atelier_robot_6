@@ -3,7 +3,7 @@ from math import *
 import time
 
 class Robot():
-    #on analyse une image de la video tous les dt (t+1 = t + dt)
+    #Each dt we analyze one frame of the video dt (t+1 = t + dt)
     dt = 0,100 #en secondes
     baseSpeed = 10 #vitesse en rpm
 
@@ -18,7 +18,7 @@ class Robot():
         #vitesse angulaire dans le repere du monde
         self.vTheta = 0
 
-        #coordonnees du robot dans le repere robot à l instant t
+        #coordonnees du robot dans le repere robot  a l instant t
         self.dx = 0
         self.dy = 0
         self.dTheta = 0
