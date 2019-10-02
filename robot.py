@@ -73,7 +73,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
-        speed = Motor.rpmToRps(speed)
+        speed = Motor.rpmToRps(motorG, speed)
         motorG.w = speed
         motorD.w = -speed
 
@@ -81,7 +81,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
-        speed = Motor.rpmToRps(speed)
+        speed = Motor.rpmToRps(motorG, speed)
         motorG.w = -speed
         motorD.w = speed
 
