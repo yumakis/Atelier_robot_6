@@ -8,7 +8,7 @@ class Robot():
     baseSpeed = 10 #vitesse en rpm
 
     coeff = 0.05
-    
+
     def __init__(self):
         #coordonnees du robot dans le repere du monde
         self.x = 0
@@ -40,10 +40,11 @@ class Robot():
         self.vLin = Motor.R*(vG + vD) / 2
         self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
 
+        print("1", self.dTheta)
+
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
         self.dTheta = self.vTheta * Robot.dt
-        print("1", self.dTheta)
         dL = self.vLin * Robot.dt
         #projection du deplacement dL dans le repere monde
         self.dx = dL * cos(self.theta + self.dTheta)
@@ -94,6 +95,7 @@ class Robot():
     def rotate(self, alpha):
         if alpha > 0:
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
+            print(self.motorLeft.w, self.motorRight.w)
         else:
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
