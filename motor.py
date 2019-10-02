@@ -7,6 +7,8 @@ class Motor():
     #rayon de la roue du robot en metres
     R = 0.026
 
+    dxl_io = pdn.DxlIO(pdn.get_available_ports()[0])
+    
     def __init__(self, id):
         self.id = id
         #vitesse angulaire du robot en rad/s
