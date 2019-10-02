@@ -37,43 +37,43 @@ class Robot():
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
 
         vG = self.motorLeft.w
-        print("DK vG", vG)
+        # print("DK vG", vG)
         vD = self.motorRight.w
-        print("DK vD", vD)
+        # print("DK vD", vD)
 
         self.vLin = Motor.R*(vG - vD) / 2
-        print("DK vLin", self.vLin)
+        # print("DK vLin", self.vLin)
         self.vTheta = Motor.R*(vG + vD) / (self.d)
-        print("DK vTheta", self.vTheta)
+        # print("DK vTheta", self.vTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
         self.dTheta = self.vTheta * Robot.dt
-        print("odom dTheta", self.dTheta)
+        # print("odom dTheta", self.dTheta)
         dL = self.vLin * Robot.dt
-        print("odom vLin", self.vLin)
+        # print("odom vLin", self.vLin)
         #projection du deplacement dL dans le repere monde
         self.dx = dL * cos(self.theta + self.dTheta)
-        print("odom dx", self.dx)
+        # print("odom dx", self.dx)
         self.dy = dL * sin(self.theta + self.dTheta)
-        print("odom dy", self.dy)
+        # print("odom dy", self.dy)
 
     def tick_odom(self):
         #MAJ des parametres dans le repere monde
         self.DK()
         self.odom()
         self.x += self.dx
-        print("tick_odom x", self.x)
+        # print("tick_odom x", self.x)
         self.y += self.dy
-        print("tick_odom y", self.y)
+        # print("tick_odom y", self.y)
         self.theta += self.dTheta
-        print("tick_odom theta", self.theta)
+        # print("tick_odom theta", self.theta)
 
     def move_straight_forward(self, speed):
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : speed, motorD.id : -speed})
-        speed = Motor.rpmToRps(speed)
+        speed = Motor.rpmToRps(motorG, speed)
         motorG.w = speed
         motorD.w = -speed
 
@@ -81,7 +81,7 @@ class Robot():
         motorG = self.motorLeft
         motorD = self.motorRight
         Motor.dxl_io.set_moving_speed({motorG.id : -speed, motorD.id : speed})
-        speed = Motor.rpmToRps(speed)
+        speed = Motor.rpmToRps(motorG, speed)
         motorG.w = -speed
         motorD.w = speed
 
@@ -91,15 +91,15 @@ class Robot():
     #vLin, vTheta are linear speed and angular speed of the Robot. They are given in the Robot Class
     def IK(self):
         vLin = self.vLin
-        print("IK vLin", vLin)
+        # print("IK vLin", vLin)
         vTheta = self.vTheta
-        print("IK vTheta", vTheta)
+        # print("IK vTheta", vTheta)
         d = self.d
-        print("IK d", d)
+        # print("IK d", d)
         self.motorLeft.w = (vLin + vTheta*d/2) / Motor.R
-        print("IK self.motorLeft.w", self.motorLeft.w)
+        # print("IK self.motorLeft.w", self.motorLeft.w)
         self.motorRight.w  = (-vLin + vTheta*d/2) / Motor.R
-        print("IK self.motorRight.w", self.motorRight.w)
+        # print("IK self.motorRight.w", self.motorRight.w)
 
     #Based on speeds given by IK we set the speed of each motor
     def move(self, vG, vD):
@@ -113,7 +113,7 @@ class Robot():
 
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
-        print("rotate alpha", alpha)
+        # print("rotate alpha", alpha)
         if alpha > 0:
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
         else:
@@ -121,7 +121,7 @@ class Robot():
 
     def go_to_xya(self,x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
-        print("goto alpha", alpha)
+        print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(abs(self.theta)-abs(alpha)) > 0.17):
             print("goto self.theta",self.theta)
