@@ -3,9 +3,10 @@ from math import *
 import time
 
 class Robot():
-    #on analyse une image de la vidéo tous les dt (t+1 = t + dt)
+    #on analyse une image de la video tous les dt (t+1 = t + dt)
     dt = 0,100 #en secondes
     baseSpeed = 10 #vitesse en rpm
+    coef = 0.05
 
     def __init__(self):
         #coordonnées du robot dans le repère du monde
