@@ -121,7 +121,7 @@ class Robot():
 
     def go_to_xya(self,x_c, y_c, theta_c):
         alpha = tan(y_c/x_c)
-        print("goto alpha", alpha, "theta", theta, "diff:", theta - alpha)
+        print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(abs(self.theta)-abs(alpha)) <= 0.17):
             print("goto self.theta",self.theta)
