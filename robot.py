@@ -35,12 +35,17 @@ class Robot():
     def DK(self):
         #convertit les vitesses angulaires (rad/s) du moteur gauche vG et du moteur droit vD dans le repere monde
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
+        print(self.motorLeft.w, self.motorRight.w)
+
         vG = self.motorLeft.w
         vD = self.motorRight.w
+
+        print(vG, vD)
+        
         self.vLin = Motor.R*(vG + vD) / 2
         self.vTheta = Motor.R*(vG - vD) / (2 * self.d)
 
-        print("1", self.dTheta)
+        # print("1", self.dTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
@@ -95,7 +100,6 @@ class Robot():
     def rotate(self, alpha):
         if alpha > 0:
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-            print(self.motorLeft.w, self.motorRight.w)
         else:
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
@@ -105,7 +109,7 @@ class Robot():
         while(abs(self.theta) <= abs(alpha)):
             self.rotate(alpha)
             self.tick_odom()
-            print(self.theta)
+            # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
