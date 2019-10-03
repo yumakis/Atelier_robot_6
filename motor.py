@@ -42,10 +42,9 @@ class Motor():
             print("deltaPos1 ",deltaPos1)
             print("deltaPos2 ",deltaPos2)
             if(delta_ang > 0):
-                delta_ang = deltaPos1 + deltaPos2
+                delta_ang = (deltaPos1 + deltaPos2)*math.pi/180
             else:
-                delta_ang = - deltaPos1 - deltaPos2
-            print("delta_ang ",delta_ang)
+                delta_ang = (- deltaPos1 - deltaPos2)*math.pi/180
         print(self.id," en deg ",pos1[0])
         print(self.id," en deg ",pos2[0])
         print(self.id," delta angle ",delta_ang)
