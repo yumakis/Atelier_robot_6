@@ -8,7 +8,7 @@ class Robot():
     dt = 0.050 #en secondes
     baseSpeed = 30 #vitesse en rpm
 
-    coeff = 0.03 #coefficient de coubure
+    coeff = 0.04 #coefficient de coubure
 
     def __init__(self):
         #coordonnees du robot dans le repere du monde
