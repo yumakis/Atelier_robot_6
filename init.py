@@ -4,10 +4,14 @@ import cv2
 import matplotlib as plt
 import pypot
 import time
-from robot import Robot
+from robot import *
+from motor import *
+
 
 def main():
     robot = Robot()
+
+
 
 if __name__ == '__main__':
     try:
