@@ -30,6 +30,7 @@ class Motor():
         pos2 = Motor.dxl_io.get_present_position([self.id])
         delta_ang = (pos2[0]-pos1[0])*math.pi/180
         if(abs(delta_ang) > 300):
+            print("GROOOOOOOS COM TON CUL")
             deltaPos1 = 0
             deltaPos2 = 0
             if(pos1[0] < 0):
@@ -42,8 +43,8 @@ class Motor():
                 delta_ang = deltaPos1 + deltaPos2
             else:
                 delta_ang = - deltaPos1 - deltaPos2
-        print(self.id," en rad ",pos1[0])
-        print(self.id," en rad ",pos2[0])
+        print(self.id," en deg ",pos1[0])
+        print(self.id," en deg ",pos2[0])
         print(self.id," delta angle ",delta_ang)
-        self.w = - delta_ang/dt
+        self.w = delta_ang/dt
         print(self.id," vit angulaire ",self.w)
