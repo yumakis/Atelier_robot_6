@@ -135,8 +135,9 @@ class Robot():
         # print("rotate alpha", alpha)
         if alpha > 0: #on tourne à gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-        else: #on tourne à droite
-            self.move(Robot.baseSpeed, Robot.baseSpeed)
+        else
+            if alpha < 0 : #on tourne à droite
+                self.move(Robot.baseSpeed, Robot.baseSpeed)
 
     def calc_alpha(self, x_c, y_c):
         x_0 = self.x
