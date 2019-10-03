@@ -8,7 +8,7 @@ class Motor():
     R = 0.026
 
     dxl_io = pdn.DxlIO(pdn.get_available_ports()[0])
-    
+
     def __init__(self, id):
         self.id = id
         #vitesse angulaire du robot en rad/s
@@ -16,7 +16,7 @@ class Motor():
 
     def rpmToRps(self,rpm):
         #rpm = round per minute to rps = rad per second
-        return rpm*2*math.pi / 60
+        return rpm*Motor.COEFF*2*math.pi / 60
 
     def rpsToRpm(self, rps):
         #rps = rad per second to rpm = round per minute
