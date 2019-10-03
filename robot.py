@@ -157,7 +157,7 @@ class Robot():
         x_0 = self.x
         y_0 = self.y
         #angle en rad de rotation dans le repere monde signe
-        alpha = calc_alpha(x_c, y_c)
+        alpha = self.calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
 
