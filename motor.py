@@ -24,7 +24,7 @@ class Motor():
         return rps*60 / 2*math.pi
 
     def calc_speed_motor(self):
-        dt = 0.1
+        dt = 0.05
         pos1 = Motor.dxl_io.get_present_position([self.id])
         time.sleep(dt)
         pos2 = Motor.dxl_io.get_present_position([self.id])
