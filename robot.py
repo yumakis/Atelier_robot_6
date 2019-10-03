@@ -141,8 +141,15 @@ class Robot():
     def calc_alpha(x_c, y_c):
         if((abs(x_c)-abs(self.x)) < 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
-        else:
+        elif((abs(x_c)-abs(self.x)) > 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi)
+        else:
+            if((abs(y_c)-abs(self.y)) < 0):
+                alpha = -pi/2
+            elif((abs(y_c)-abs(self.y)) > 0):
+                alpha = pi/2
+            else:
+                alpha = 0
         return alpha
 
     def go_to_xya(self,x_c, y_c, theta_c):
@@ -153,6 +160,7 @@ class Robot():
         alpha = calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
+
         while(abs(abs(self.theta)-abs(alpha)) > 0.05):
             print("goto self.theta",self.theta)
             print("goto abs(alpha)", abs(alpha))
