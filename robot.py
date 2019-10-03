@@ -77,6 +77,7 @@ class Robot():
         self.y += self.dy
         # print("tick_odom y", self.y)
         self.theta += self.dTheta
+        self.theta = self.theta%(2*pi)
         # print("tick_odom theta", self.theta)
 
     #speed in parametres is in rpm
