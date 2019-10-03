@@ -134,10 +134,10 @@ class Robot():
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
         # print("rotate alpha", alpha)
-        if alpha > 0: #on tourne à gauche
+        if alpha > 0: #on tourne a gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
         else:
-            if alpha < 0 : #on tourne à droite
+            if alpha < 0 : #on tourne a droite
                 self.move(Robot.baseSpeed, Robot.baseSpeed)
 
     def calc_alpha(self, x_c, y_c):
