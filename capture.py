@@ -16,10 +16,8 @@ countGreenStart = 0
 while(True and countGreenStart < 3):
     #capture image
     ret,frame = video_capture.read()
-    #crop image
-    crop_img = frame[379:480, 0:640]
 
-    hsv = cv2.cvtColor(crop_img, cv2.COLOR_RGB2HSV)
+    hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
 
     #lower_blue = np.uint8([0,39,64])
     #upper_blue = np.uint8([20,255,255])
@@ -58,7 +56,7 @@ while(True and countGreenStart < 3):
     #    print("Centroid of the biggest area: ({}, {})".format(cx, cy))
     #else:
     #    print("No Centroid Found")
-    res = cv2.bitwise_and(crop_img,crop_img, mask= mask)
+    res = cv2.bitwise_and(frame,frame, mask= mask)
     # Get the line center
     
     gray_image = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)  # conversion de l image en niveau de gris
