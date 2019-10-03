@@ -181,7 +181,7 @@ class Robot():
         while(abs(abs(self.theta)-abs(theta_c)) > 0.05):
             print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
             print("goto abs(theta_c)",theta_c)
-            self.rotate(theta_c-self.theta)
+            self.rotate((theta_c-self.theta)%(2*pi))
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
