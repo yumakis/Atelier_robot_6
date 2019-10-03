@@ -32,6 +32,7 @@ class Robot():
         #distance entre les 2 roues du robot en metres
         self.d = 0.165
 
+
     def DK(self):
         #convertit les vitesses angulaires (rad/s) du moteur gauche vG et du moteur droit vD dans le repere monde
         #en vitesses lineaire (m/s) vLin et vitesse angulaire (rad/s) vTheta dans le repere monde
