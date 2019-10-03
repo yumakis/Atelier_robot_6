@@ -8,7 +8,7 @@ class Robot():
     dt = 0.050 #en secondes
     baseSpeed = 20 #vitesse en rpm
 
-    coeff = 0.05 #coefficient de coubure
+    coeff = 0.1 #coefficient de coubure
 
     def __init__(self):
         #coordonnees du robot dans le repere du monde
@@ -131,6 +131,7 @@ class Robot():
 
     def stop(self):
         self.move(0,0)
+        Motor.dxl_io.disable_torque([self.motorLeft.id, self.motorRight.id])
 
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
@@ -189,7 +190,7 @@ class Robot():
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
-        
+
     def odometry(self):
         try:
             while(True):
@@ -201,5 +202,3 @@ class Robot():
         except KeyboardInterrupt:
             print('Killed by user')
             sys.exit(0)
-
-            

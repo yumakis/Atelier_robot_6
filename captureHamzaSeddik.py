@@ -43,7 +43,7 @@ while(True):
     print(cY)
     #cv2.circle(res, (cX, cY), 5, (255, 255, 255), -1)
     #cv2.putText(res, "centroid", (cX - 25, cY - 25),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-    
+
     delta = (1/Width) * ( Width/2-cX)
 
     print(delta)
@@ -61,7 +61,8 @@ while(True):
     k = cv2.waitKey(5) & 0xFF
     if k == 35:
         break
-    
+
     time.sleep(0.1)
 
+robot.stop()
 cv2.destroyAllWindows()

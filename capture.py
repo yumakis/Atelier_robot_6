@@ -16,7 +16,7 @@ i = 0
 transition = False
 
 while(i<3):
-
+    print(time.clock())
     ret,frame = video_capture.read()
     hsv = cv2.cvtColor(frame, cv2.COLOR_RGB2HSV)
     # cv2.imshow('frame',hsv)
@@ -72,10 +72,10 @@ while(i<3):
 
     #print(delta)
 
-    if delta  >= 0.1:
+    if delta  >= 0.05:
         print("le robot doit tourner a gauche")
         robot.move(-Robot.baseSpeed + Robot.coeff*delta, -Robot.baseSpeed - Robot.coeff*delta)
-    elif delta  <= -0.1:
+    elif delta  <= -0.05:
         print("le robot doit tourner a droite")
         robot.move(Robot.baseSpeed + Robot.coeff*delta, Robot.baseSpeed - Robot.coeff*delta)
     else:
