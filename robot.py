@@ -138,7 +138,7 @@ class Robot():
         else: #on tourne à droite
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
-    def calc_alpha(x_c, y_c):
+    def calc_alpha(self, x_c, y_c):
         if((abs(x_c)-abs(self.x)) < 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
         elif((abs(x_c)-abs(self.x)) > 0):
