@@ -1,10 +1,12 @@
 import numpy as np
 import cv2
 import time
-
+from robot import Robot
 
 Width = 640.
 Height = 480.
+
+robot = Robot()
 
 video_capture = cv2.VideoCapture(0)
 video_capture.set(3, Width)
@@ -72,9 +74,13 @@ while(i<3):
 
     if delta  >= 0.1:
         print("le robot doit tourner a gauche")
-
-    if delta  <= -0.1:
+        robot.move(-Robot.baseSpeed + Robot.coeff*delta, -Robot.baseSpeed - Robot.coeff*delta)
+    elif delta  <= -0.1:
         print("le robot doit tourner a droite")
+        robot.move(Robot.baseSpeed + Robot.coeff*delta, Robot.baseSpeed - Robot.coeff*delta)
+    else:
+        print("le robot avance tout droit")
+        robot.move(Robot.baseSpeed, -Robot.baseSpeed)
 
     # affichage de l image
 
