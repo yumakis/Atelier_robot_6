@@ -42,7 +42,8 @@ class Motor():
                 delta_ang = deltaPos1 + deltaPos2
             else:
                 delta_ang = - deltaPos1 - deltaPos2
-        print(self.id," ",pos1[0])
-        print(self.id," ",pos2[0])
+        print(self.id," en rad ",pos1[0])
+        print(self.id," en rad ",pos2[0])
+        print(self.id," delta angle ",delta_ang)
         self.w = - delta_ang/dt
-        print(self.id," ",self.w)
+        print(self.id," vit angulaire ",self.w)
