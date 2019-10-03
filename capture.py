@@ -43,13 +43,14 @@ while(i<3):
 
     if difference_moyenne  <= 0:  # le vert domine pas
         transition = False
-        robot.baseSpeed -= 15
+        robot.baseSpeed -= 20
         print("suivre la ligne")
     else:
         if (difference_moyenne > 0) and (transition == False):
             transition = True
             # t_transition = time.clock()
-            robot.baseSpeed += 15
+            robot.baseSpeed += 20
+            robot.move_straight_forward(robot.baseSpeed)
             i = (i+1)
             print("changement de ligne")
 
@@ -94,4 +95,5 @@ while(i<3):
     if k == 35:
         break
 
+robot.stop()
 cv2.destroyAllWindows()
