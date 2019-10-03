@@ -138,7 +138,7 @@ class Robot():
         else: #on tourne à droite
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
-    def alpha(x_c, y_c):
+    def calc_alpha(x_c, y_c):
         if((abs(x_c)-abs(self.x)) < 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
         else:
@@ -150,7 +150,7 @@ class Robot():
         x_0 = self.x
         y_0 = self.y
         #angle en rad de rotation dans le repere monde signe
-        alpha = alpha(x_c, y_c)
+        alpha = calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         while(abs(abs(self.theta)-abs(alpha)) > 0.05):
