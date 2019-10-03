@@ -25,9 +25,9 @@ while(i<3):
     lower = np.array(np.matrix([[20,50,50],[80,100,100],[0,39,64],[110,50,50]]))
     upper = np.array(np.matrix([[60,200,200],[105,255,255],[20,255,255],[130,255,255]]))
 
+    mask_rouge = cv2.inRange(hsv,lower[3], upper[3])  # rouge
     mask_jaune = cv2.inRange(hsv,lower[1], upper[1])  # jaune
     mask_bleu = cv2.inRange(hsv,lower[2], upper[2])  # bleu
-    mask_rouge = cv2.inRange(hsv,lower[3], upper[3])  # rouge
     mask_couleur= list((mask_jaune,mask_bleu,mask_rouge))
 
 
