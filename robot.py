@@ -188,3 +188,10 @@ class Robot():
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
+        
+        def odometry(self):
+            self.motorRight.calc_speed_motor()
+            self.motorLeft.calc_speed_motor()
+            self.tick_odom()
+            print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
+            
