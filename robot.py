@@ -197,6 +197,7 @@ class Robot():
                 self.motorLeft.calc_speed_motor()
                 self.tick_odom()
                 print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
+                time.sleep(0.5)
         except KeyboardInterrupt:
             print('Killed by user')
             sys.exit(0)
