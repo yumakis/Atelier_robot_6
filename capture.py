@@ -28,7 +28,7 @@ while(i<3):
     mask_jaune = cv2.inRange(hsv,lower[1], upper[1])  # jaune
     mask_bleu = cv2.inRange(hsv,lower[2], upper[2])  # bleu
     mask_rouge = cv2.inRange(hsv,lower[3], upper[3])  # rouge
-    mask_couleur= list((mask_rouge, mask_jaune, mask_bleu))
+    mask_couleur= list((mask_jaune, mask_bleu, mask_rouge))
 
 
     mask_vert = cv2.inRange(hsv,lower[0], upper[0]) # creation du mask vert hsv
