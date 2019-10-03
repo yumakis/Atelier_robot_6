@@ -79,6 +79,7 @@ class Robot():
         self.theta += self.dTheta
         # print("tick_odom theta", self.theta)
 
+    #speed in parametres is in rpm
     def move_straight_forward(self, speed):
         motorG = self.motorLeft
         motorD = self.motorRight
@@ -124,6 +125,9 @@ class Robot():
         vD = Motor.rpmToRps(motorD, vD)
         motorG.w = vG
         motorD.w = vD
+
+    def stop(self):
+        self.move(0,0)
 
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
