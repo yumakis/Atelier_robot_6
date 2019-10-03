@@ -5,7 +5,7 @@ import sys
 
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
-    dt = 0.050 #en secondes
+    dt = 0.05 #en secondes
     baseSpeed = 30 #vitesse en rpm
 
     coeff = 0.04 #coefficient de coubure
@@ -96,7 +96,6 @@ class Robot():
         speed = Motor.rpmToRps(motorG, speed)
         motorG.w = -speed
         motorD.w = speed
-
 
     #Convert linear speed and angular speed into speed for Left engine and Right engine
     #d is the distance between the two wheels. It s given in the Robot class
