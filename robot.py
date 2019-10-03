@@ -145,7 +145,7 @@ class Robot():
         while(abs(abs(self.theta)-abs(alpha)) > 0.17):
             print("goto self.theta",self.theta)
             print("goto abs(alpha)", abs(alpha))
-            print("dTheta:", self.dTheta)
+            print("vG:", vG, "vD:", vD, "dTheta:", self.dTheta)
             self.rotate(alpha)
             self.tick_odom()
             time.sleep(Robot.dt)
