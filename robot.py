@@ -113,7 +113,7 @@ class Robot():
         else: #on tourne a droite
             self.motorLeft.w = - (vLin + vTheta*d/2) / Motor.R
             self.motorRight.w  = (vLin - vTheta*d/2) / Motor.R
-        
+
 
     #Based on speeds given by IK we set the speed of each motor
     def move(self, vG, vD):
@@ -130,7 +130,7 @@ class Robot():
         # print("rotate alpha", alpha)
         if alpha > 0: #on tourne à gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-        else: #on tourne à droite 
+        else: #on tourne à droite
             self.move(Robot.baseSpeed, Robot.baseSpeed)
 
     def go_to_xya(self,x_c, y_c, theta_c):
@@ -149,10 +149,9 @@ class Robot():
             time.sleep(Robot.dt)
             # print(self.theta)
         while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
-            print("goto abs(self.x)", abs(self.x))
-            print("goto abs(x_c)", abs(x_c))
-            print("goto abs(self.y)", abs(self.y))
-            print("goto abs(y_c)", abs(y_c))
+            print("goto abs(self.x)", abs(self.x), "goto abs(x_c)", abs(x_c))
+            print("goto abs(self.y)", abs(self.y), "goto abs(y_c)", abs(y_c))
+            print("vLin:", self.vLin)
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
