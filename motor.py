@@ -28,6 +28,8 @@ class Motor():
         pos1 = Motor.dxl_io.get_present_position([self.id])
         time.sleep(dt)
         pos2 = Motor.dxl_io.get_present_position([self.id])
-        delta_ang = (pos2-pos1)*math.pi/180
+        print(type(pos1))
+        print(pos1[0])
+        delta_ang = (pos2[0]-pos1[0])*math.pi/180
         self.w = delta_ang/dt
         print(self.w)
