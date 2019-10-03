@@ -135,7 +135,7 @@ class Robot():
         # print("rotate alpha", alpha)
         if alpha > 0: #on tourne à gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-        else
+        else:
             if alpha < 0 : #on tourne à droite
                 self.move(Robot.baseSpeed, Robot.baseSpeed)
 
