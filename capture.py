@@ -43,13 +43,13 @@ while(i<3):
 
     if difference_moyenne  <= 0:  # le vert domine pas
         transition = False
-        robot.baseSpeed -= 5
+        robot.baseSpeed -= 15
         print("suivre la ligne")
     else:
         if (difference_moyenne > 0) and (transition == False):
             transition = True
             # t_transition = time.clock()
-            robot.baseSpeed += 5
+            robot.baseSpeed += 15
             i = (i+1)
             print("changement de ligne")
 
