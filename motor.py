@@ -21,7 +21,7 @@ class Motor():
 
     def rpsToRpm(self, rps):
         #rps = rad per second to rpm = round per minute
-        return rps*60 / 2*math.pi
+        return rps*60 / 2*math.pi*Motor.COEFF
 
     def calc_speed_motor(self):
         dt = 0.05
@@ -29,7 +29,7 @@ class Motor():
         time.sleep(dt)
         pos2 = Motor.dxl_io.get_present_position([self.id])
         delta_ang = (pos2[0]-pos1[0])*math.pi/180
-        if(abs(delta_ang) > 300):
+        if((pos1[0] < 0 and pos2[0] >= 0) or (pos1[0] >= 0 and pos2[0] < 0)):
             print("GROOOOOOOS COM TON CUL")
             deltaPos1 = 0
             deltaPos2 = 0
