@@ -161,6 +161,7 @@ class Robot():
         self.tick_odom()
         x_0 = self.x
         y_0 = self.y
+        theta_c = theta_c % (2*pi)
         #angle en rad de rotation dans le repere monde signe
         alpha = self.calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
