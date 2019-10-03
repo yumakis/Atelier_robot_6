@@ -11,13 +11,18 @@ from capture import *
 
 def main():
     robot = Robot()
-    vision()
+    lx, ly = vision()
+    robot.stop()
+    robot.draw_ride(lx,ly)
     time.sleep(5)
 
-    robot.odometry()
+    lx, ly = robot.odometry()
+    robot.draw_ride(lx,ly)
     time.sleep(5)
 
-    robot.go_to_xya(1,1,3.14/2)
+    robot.start()
+    lx, ly = robot.go_to_xya(1,1,3.14/2)
+    robot.draw_ride(lx,ly)
     # robot.go_to_xya(0,0,0)
     # robot.go_to_xya(-1,-1,3.14/4)
 

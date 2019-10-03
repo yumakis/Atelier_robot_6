@@ -2,6 +2,7 @@ from motor import Motor
 from math import *
 import time
 import sys
+import matplotlib as plt
 
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
@@ -130,6 +131,9 @@ class Robot():
         self.move(0,0)
         Motor.dxl_io.disable_torque([self.motorLeft.id, self.motorRight.id])
 
+    def start(self):
+        Motor.dxl_io.enable_torque([self.motorLeft.id, self.motorRight.id])
+
     #alpha : orientation of the robot. Depending of its sign we rotate the robot toward left or right
     def rotate(self, alpha):
         # print("rotate alpha", alpha)
@@ -157,9 +161,13 @@ class Robot():
         return alpha
 
     def go_to_xya(self,x_c, y_c, theta_c):
+        lx = []
+        ly = []
         self.tick_odom()
         x_0 = self.x
         y_0 = self.y
+        lx.append(x_0)
+        ly.append(y_0)
         theta_c = theta_c % (2*pi)
         #angle en rad de rotation dans le repere monde signe
         alpha = self.calc_alpha(x_c, y_c)
@@ -171,6 +179,8 @@ class Robot():
                 print("goto abs(alpha)", abs(alpha))
                 self.rotate(alpha)
                 self.tick_odom()
+                lx.append(self.x)
+                ly.append(self.y)
                 time.sleep(Robot.dt)
                 # print(self.theta)
         while((abs((abs(self.x) - abs(x_c))) > 0.05) or (abs((abs(self.y) - abs(y_c))) > 0.05)):
@@ -179,23 +189,36 @@ class Robot():
             print("vLin:", self.vLin)
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
+            lx.append(self.x)
+            ly.append(self.y)
             time.sleep(Robot.dt)
         while(abs(abs(self.theta)-abs(theta_c)) > 0.05):
             print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
             print("goto abs(theta_c)",theta_c)
             self.rotate((theta_c-self.theta)%(2*pi))
             self.tick_odom()
+            lx.append(self.x)
+            ly.append(self.y)
             time.sleep(Robot.dt)
-        self.move(0, 0)
+        self.stop()
+        return lx,ly
 
     def odometry(self):
         try:
+            lx = []
+            ly = []
             while(True):
                 self.motorRight.calc_speed_motor()
                 self.motorLeft.calc_speed_motor()
                 self.tick_odom()
+                lx.append(self.x)
+                ly.append(self.y)
                 print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
                 time.sleep(0.5)
+            return lx,ly
         except KeyboardInterrupt:
             print('Killed by user')
             sys.exit(0)
+
+    def draw_ride(self,lx,ly):
+        plt.plot(lx,ly)

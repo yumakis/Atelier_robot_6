@@ -9,6 +9,9 @@ def vision():
 
     robot = Robot()
 
+    lx = []
+    ly = []
+
     video_capture = cv2.VideoCapture(0)
     video_capture.set(3, Width)
     video_capture.set(4, Height)
@@ -86,7 +89,9 @@ def vision():
         else:
             print("le robot avance tout droit")
             robot.move(Robot.baseSpeed, -Robot.baseSpeed)
-
+        robot.tick_odom()
+        lx.append(robot.x)
+        ly.append(robot.y)
         # affichage de l image
 
         # cv2.imshow('frame',frame)
@@ -96,5 +101,6 @@ def vision():
         if k == 35:
             break
 
-    robot.stop()
     cv2.destroyAllWindows()
+
+    return lx,ly
