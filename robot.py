@@ -136,18 +136,21 @@ class Robot():
         # print("rotate alpha", alpha)
         if alpha > 0: #on tourne à gauche
             self.move(-Robot.baseSpeed, -Robot.baseSpeed)
-        else: #on tourne à droite
-            self.move(Robot.baseSpeed, Robot.baseSpeed)
+        else:
+            if alpha < 0 : #on tourne à droite
+                self.move(Robot.baseSpeed, Robot.baseSpeed)
 
-    def calc_alpha(x_c, y_c):
-        if((abs(x_c)-abs(self.x)) < 0):
+    def calc_alpha(self, x_c, y_c):
+        x_0 = self.x
+        y_0 = self.y
+        if((abs(x_c)-abs(x_0)) < 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
-        elif((abs(x_c)-abs(self.x)) > 0):
+        elif((abs(x_c)-abs(x_0)) > 0):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi)
         else:
-            if((abs(y_c)-abs(self.y)) < 0):
+            if((abs(y_c)-abs(y_0)) < 0):
                 alpha = -pi/2
-            elif((abs(y_c)-abs(self.y)) > 0):
+            elif((abs(y_c)-abs(y_0)) > 0):
                 alpha = pi/2
             else:
                 alpha = 0
@@ -158,7 +161,7 @@ class Robot():
         x_0 = self.x
         y_0 = self.y
         #angle en rad de rotation dans le repere monde signe
-        alpha = calc_alpha(x_c, y_c)
+        alpha = self.calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
 
@@ -169,7 +172,7 @@ class Robot():
             self.tick_odom()
             time.sleep(Robot.dt)
             # print(self.theta)
-        while((abs((abs(self.x) - abs(x_c))) > 0.05) and (abs((abs(self.y) - abs(y_c))) > 0.05)):
+        while((abs((abs(self.x) - abs(x_c))) > 0.05) or (abs((abs(self.y) - abs(y_c))) > 0.05)):
             print("goto abs(self.x)", abs(self.x), "goto abs(x_c)", abs(x_c))
             print("goto abs(self.y)", abs(self.y), "goto abs(y_c)", abs(y_c))
             print("vLin:", self.vLin)
@@ -179,7 +182,7 @@ class Robot():
         while(abs(abs(self.theta)-abs(theta_c)) > 0.05):
             print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
             print("goto abs(theta_c)",theta_c)
-            self.rotate(theta_c-self.theta)
+            self.rotate((theta_c-self.theta)%(2*pi))
             self.tick_odom()
             time.sleep(Robot.dt)
         self.move(0, 0)
