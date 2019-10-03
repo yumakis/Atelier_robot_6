@@ -4,7 +4,7 @@ import time
 
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
-    dt = 0.100 #en secondes
+    dt = 0.050 #en secondes
     baseSpeed = 20 #vitesse en rpm
 
     coeff = 0.05 #coefficient de coubure
@@ -161,6 +161,7 @@ class Robot():
         self.tick_odom()
         x_0 = self.x
         y_0 = self.y
+        theta_c = theta_c % (2*pi)
         #angle en rad de rotation dans le repere monde signe
         alpha = self.calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
