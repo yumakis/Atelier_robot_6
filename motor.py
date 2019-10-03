@@ -22,11 +22,10 @@ class Motor():
         #rps = rad per second to rpm = round per minute
         return rps*60 / 2*math.pi
 
-    def calc_speed_motor():
+    def calc_speed_motor(self):
         dt = 0.1
         pos1 = dxl_io.get_present_position([self.id])
         time.sleep(dt)
         pos2 = dxl_io.get_present_position([self.id])
         delta_ang = (pos2-pos1)*math.pi/180
         self.w = delta_ang/dt
-        
