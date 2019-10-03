@@ -1,6 +1,7 @@
 from motor import Motor
 from math import *
 import time
+import sys
 
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
@@ -190,8 +191,14 @@ class Robot():
         self.move(0, 0)
         
         def odometry(self):
-            self.motorRight.calc_speed_motor()
-            self.motorLeft.calc_speed_motor()
-            self.tick_odom()
-            print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
+            try:
+                while(True):
+                    self.motorRight.calc_speed_motor()
+                    self.motorLeft.calc_speed_motor()
+                    self.tick_odom()
+                    print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
+            except KeyboardInterrupt:
+                print('Killed by user')
+                sys.exit(0)
+
             
