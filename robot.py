@@ -222,3 +222,8 @@ class Robot():
 
     def draw_ride(self,lx,ly):
         plt.plot(lx,ly)
+        plt.xlabel('x in meters')
+        plt.ylabel('y in meters')
+        plt.title("Robot ride")
+        plt.legend()
+        plt.show()
