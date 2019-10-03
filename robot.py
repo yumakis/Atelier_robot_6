@@ -4,7 +4,7 @@ import time
 
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
-    dt = 0.100 #en secondes
+    dt = 0.050 #en secondes
     baseSpeed = 20 #vitesse en rpm
 
     coeff = 0.05 #coefficient de coubure
