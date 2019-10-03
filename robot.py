@@ -40,16 +40,6 @@ class Robot():
         # print("DK vG", vG)
         vD = self.motorRight.w
         # print("DK vD", vD)
-
-        # if(vG>0 and vD>0): #on tourne a droite en avancant
-        #     self.vLin = Motor.R*(vG + vD) / 2
-        #     self.vTheta = Motor.R*(vG - vD) / (self.d)
-        # else:
-        #     if(vG<=0 and vD<=0): #on tourne a gauche en avancant
-        #         self.vLin = Motor.R*(vG + vD) / 2
-        #         self.vTheta = Motor.R*(vD - vG) / (self.d)
-        #     else: #on avance ou on recule en ligne droite
-
         self.vLin = Motor.R*(vG - vD) / 2
         # print("DK vLin", self.vLin)
         self.vTheta = Motor.R*(vG + vD) / (self.d)
