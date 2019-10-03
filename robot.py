@@ -145,7 +145,7 @@ class Robot():
         y_0 = self.y
         err = 0.05
         if(x_c-x_0 < -err):
-            alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
+            alpha = (atan((y_c - y_0)/(x_c - x_0)) + pi)%(2*pi)
         elif(x_c-x_0 > err):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi)
         else:
