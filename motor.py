@@ -1,5 +1,6 @@
 import math
 import pypot.dynamixel as pdn
+import time
 
 class Motor():
     #la vitesse en rpm des moteurs est un multiple de ce coeff
@@ -24,8 +25,8 @@ class Motor():
 
     def calc_speed_motor(self):
         dt = 0.1
-        pos1 = dxl_io.get_present_position([self.id])
+        pos1 = Motor.dxl_io.get_present_position([self.id])
         time.sleep(dt)
-        pos2 = dxl_io.get_present_position([self.id])
+        pos2 = Motor.dxl_io.get_present_position([self.id])
         delta_ang = (pos2-pos1)*math.pi/180
         self.w = delta_ang/dt
