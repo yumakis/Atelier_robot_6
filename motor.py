@@ -34,11 +34,11 @@ class Motor():
             deltaPos1 = 0
             deltaPos2 = 0
             if(pos1[0] < 0):
-                deltaPos1 = -180 - pos1[0]
+                deltaPos1 = pos1[0] + 180
                 deltaPos2 = 180 - pos2[0]
             else: #if(pos1[0] >= 0)
                 deltaPos1 = 180 - pos1[0]
-                deltaPos2 = -180 - pos2[0]
+                deltaPos2 = pos2[0] + 180
             if(delta_ang > 0):
                 delta_ang = deltaPos1 + deltaPos2
             else:
