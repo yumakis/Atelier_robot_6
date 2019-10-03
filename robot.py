@@ -146,7 +146,7 @@ class Robot():
             self.tick_odom()
             time.sleep(Robot.dt)
             # print(self.theta)
-        while((abs(self.x) <= abs(x_c)) and (abs(self.y) <= abs(y_c))):
+        while((abs((abs(self.x) - abs(x_c)) > 0.05)) and (abs((abs(self.y) - abs(y_c)) > 0.05))):
             print("goto abs(self.x)", abs(self.x))
             print("goto abs(x_c)", abs(x_c))
             print("goto abs(self.y)", abs(self.y))
