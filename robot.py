@@ -109,7 +109,7 @@ class Robot():
         vTheta = self.vTheta
         # print("IK vTheta", vTheta)
         d = self.d
-            if(vTheta<=0): #on tourne a droite
+        if(vTheta<=0): #on tourne a droite
             self.motorLeft.w = (vLin - vTheta*d/2) / Motor.R
             # print("IK self.motorLeft.w", self.motorLeft.w)
             self.motorRight.w  = - (vLin + vTheta*d/2) / Motor.R
