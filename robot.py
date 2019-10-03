@@ -5,7 +5,7 @@ import time
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
     dt = 0.100 #en secondes
-    baseSpeed = 10 #vitesse en rpm
+    baseSpeed = 20 #vitesse en rpm
 
     coeff = 0.05 #coefficient de coubure
 
@@ -166,7 +166,7 @@ class Robot():
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
         if(alpha != 0):
-            while(abs(abs(self.theta)-abs(alpha)) > 0.01):
+            while(abs(abs(self.theta)-abs(alpha)) > 0.05):
                 print("goto self.theta",self.theta)
                 print("goto abs(alpha)", abs(alpha))
                 self.rotate(alpha)
@@ -180,8 +180,8 @@ class Robot():
             self.move_straight_forward(Robot.baseSpeed)
             self.tick_odom()
             time.sleep(Robot.dt)
-        while(abs(abs(self.theta)-abs(theta_c)) > 0.01):
-            print("goto abs(self.theta - alphaw)", abs(self.theta - alpha))
+        while(abs(abs(self.theta)-abs(theta_c)) > 0.05):
+            print("goto abs(self.theta - alpha)", abs(self.theta - alpha))
             print("goto abs(theta_c)",theta_c)
             self.rotate((theta_c-self.theta)%(2*pi))
             self.tick_odom()
