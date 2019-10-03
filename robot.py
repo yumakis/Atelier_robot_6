@@ -41,18 +41,19 @@ class Robot():
         vD = self.motorRight.w
         # print("DK vD", vD)
 
-        if(vG>=0 and vD>=0): #on tourne a droite en avancant
-            self.vLin = Motor.R*(vG + vD) / 2
-            self.vTheta = Motor.R*(vG - vD) / (self.d)
-        else:
-            if(vG<=0 and vD<=0): #on tourne a gauche en avancant
-                self.vLin = Motor.R*(vG + vD) / 2
-                self.vTheta = Motor.R*(vD - vG) / (self.d)
-            else: #on avance ou on recule en ligne droite
-                self.vLin = Motor.R*(vG - vD) / 2
-                # print("DK vLin", self.vLin)
-                self.vTheta = Motor.R*(vG + vD) / (self.d)
-                # print("DK vTheta", self.vTheta)
+        # if(vG>0 and vD>0): #on tourne a droite en avancant
+        #     self.vLin = Motor.R*(vG + vD) / 2
+        #     self.vTheta = Motor.R*(vG - vD) / (self.d)
+        # else:
+        #     if(vG<=0 and vD<=0): #on tourne a gauche en avancant
+        #         self.vLin = Motor.R*(vG + vD) / 2
+        #         self.vTheta = Motor.R*(vD - vG) / (self.d)
+        #     else: #on avance ou on recule en ligne droite
+
+        self.vLin = Motor.R*(vG - vD) / 2
+        # print("DK vLin", self.vLin)
+        self.vTheta = Motor.R*(vG + vD) / (self.d)
+        # print("DK vTheta", self.vTheta)
 
     def odom(self):
         #calcule les deplacements dX, dY, et dTheta entre les instants t et t + dt dans le repere du robot
