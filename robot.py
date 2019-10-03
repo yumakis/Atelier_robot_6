@@ -144,14 +144,14 @@ class Robot():
         x_0 = self.x
         y_0 = self.y
         err = 0.05
-        if((abs(x_c)-abs(x_0)) < -err):
+        if(abs(x_c-x_0) < -err):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi) + pi
-        elif((abs(x_c)-abs(x_0)) > err):
+        elif(abs(x_c-x_0) > err):
             alpha = atan((y_c - y_0)/(x_c - x_0))%(2*pi)
         else:
-            if((abs(y_c)-abs(y_0)) < -err):
+            if(abs(y_c-y_0) < -err):
                 alpha = -pi/2
-            elif((abs(y_c)-abs(y_0)) > err):
+            elif(abs(y_c-y_0) > err):
                 alpha = pi/2
             else:
                 alpha = 0
