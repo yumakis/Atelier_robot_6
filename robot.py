@@ -6,7 +6,7 @@ import sys
 class Robot():
     #Each dt we analyze one frame of the video dt (t+1 = t + dt)
     dt = 0.050 #en secondes
-    baseSpeed = 20 #vitesse en rpm
+    baseSpeed = 30 #vitesse en rpm
 
     coeff = 0.04 #coefficient de coubure
 
@@ -109,7 +109,7 @@ class Robot():
         vTheta = self.vTheta
         # print("IK vTheta", vTheta)
         d = self.d
-        if(vTheta<=0): #on tourne a droite
+            if(vTheta<=0): #on tourne a droite
             self.motorLeft.w = (vLin - vTheta*d/2) / Motor.R
             # print("IK self.motorLeft.w", self.motorLeft.w)
             self.motorRight.w  = - (vLin + vTheta*d/2) / Motor.R
