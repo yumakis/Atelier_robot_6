@@ -47,6 +47,7 @@ while(i<3):
     else:
         if (difference_moyenne > 0) and (transition == False):
             transition = True
+            # t_transition = time.clock()
             i = (i+1)
             print("changement de ligne")
 
