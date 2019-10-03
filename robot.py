@@ -165,14 +165,14 @@ class Robot():
         alpha = self.calc_alpha(x_c, y_c)
         print("goto alpha", alpha, "theta", self.theta, "diff:", self.theta - alpha)
         #on effectue la boucle tant qu on la position du robot ne correspond pas a la cible
-
-        while(abs(abs(self.theta)-abs(alpha)) > 0.05):
-            print("goto self.theta",self.theta)
-            print("goto abs(alpha)", abs(alpha))
-            self.rotate(alpha)
-            self.tick_odom()
-            time.sleep(Robot.dt)
-            # print(self.theta)
+        if(alpha != 0):
+            while(abs(abs(self.theta)-abs(alpha)) > 0.05):
+                print("goto self.theta",self.theta)
+                print("goto abs(alpha)", abs(alpha))
+                self.rotate(alpha)
+                self.tick_odom()
+                time.sleep(Robot.dt)
+                # print(self.theta)
         while((abs((abs(self.x) - abs(x_c))) > 0.05) or (abs((abs(self.y) - abs(y_c))) > 0.05)):
             print("goto abs(self.x)", abs(self.x), "goto abs(x_c)", abs(x_c))
             print("goto abs(self.y)", abs(self.y), "goto abs(y_c)", abs(y_c))
