@@ -190,15 +190,15 @@ class Robot():
             time.sleep(Robot.dt)
         self.move(0, 0)
         
-        def odometry(self):
-            try:
-                while(True):
-                    self.motorRight.calc_speed_motor()
-                    self.motorLeft.calc_speed_motor()
-                    self.tick_odom()
-                    print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
-            except KeyboardInterrupt:
-                print('Killed by user')
-                sys.exit(0)
+    def odometry(self):
+        try:
+            while(True):
+                self.motorRight.calc_speed_motor()
+                self.motorLeft.calc_speed_motor()
+                self.tick_odom()
+                print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
+        except KeyboardInterrupt:
+            print('Killed by user')
+            sys.exit(0)
 
             
