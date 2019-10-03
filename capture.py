@@ -78,10 +78,10 @@ while(i<3):
 
     if delta  >= 0.15:
         print("le robot doit tourner a gauche")
-        robot.move(-Robot.baseSpeed*0.6 + Robot.coeff*delta, -Robot.baseSpeed*0.6 - Robot.coeff*delta)
+        robot.move(-Robot.baseSpeed*0.6 , -Robot.baseSpeed*0.6 - Robot.coeff*delta)
     elif delta  <= -0.15:
         print("le robot doit tourner a droite")
-        robot.move(Robot.baseSpeed*0.6 + Robot.coeff*delta, Robot.baseSpeed*0.6 - Robot.coeff*delta)
+        robot.move(Robot.baseSpeed*0.6 + Robot.coeff*delta, Robot.baseSpeed*0.6)
     else:
         print("le robot avance tout droit")
         robot.move(Robot.baseSpeed, -Robot.baseSpeed)
