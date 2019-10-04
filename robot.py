@@ -213,8 +213,10 @@ class Robot():
             while(self.motorRight.w == 0 and self.motorLeft.w == 0):
                 self.motorRight.calc_speed_motor()
                 self.motorLeft.calc_speed_motor()
+                print("immobile")
                 time.sleep(Robot.dt)
             while(self.motorRight.w != 0 or self.motorLeft.w != 0):
+                print("en mouvement")
                 self.motorRight.calc_speed_motor()
                 self.motorLeft.calc_speed_motor()
                 self.tick_odom()
