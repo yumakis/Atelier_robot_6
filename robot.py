@@ -45,13 +45,16 @@ class Robot():
         print("DK vD", vD)
 
         if(vG>0 and vD>0): #on tourne a droite en avancant
+            print("en avant")
             self.vLin = Motor.R*(vG - vD) / 2
             self.vTheta = - Motor.R*(vG + vD) / (self.d)
         else:
             if(vG<=0 and vD<=0): #on tourne a gauche en avancant
+                print("gauche")
                 self.vLin = Motor.R*(vG - vD) / 2
                 self.vTheta = - Motor.R*(vG + vD) / (self.d)
             else: #on avance ou on recule en ligne droite
+                print("droite")
                 self.vLin = Motor.R*(vG - vD) / 2
                 self.vTheta = Motor.R*(vG + vD) / (self.d)
         print("DK vTheta", self.vTheta)
@@ -207,14 +210,16 @@ class Robot():
         try:
             lx = []
             ly = []
-            while(True):
+            while(self.motorRight.w == 0 or self.motorLeft.w == 0):
+                time.sleep(Robot.dt)
+            while(self.motorRight.w != 0 and self.motorLeft.w != 0):
                 self.motorRight.calc_speed_motor()
                 self.motorLeft.calc_speed_motor()
                 self.tick_odom()
                 lx.append(self.x)
                 ly.append(self.y)
                 print("X : ", self.x, " / Y : ", self.y, " / Theta : ", self.theta)
-                time.sleep(0.5)
+                time.sleep(Robot.dt)
             return lx,ly
         except KeyboardInterrupt:
             print('Killed by user')

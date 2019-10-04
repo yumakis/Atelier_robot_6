@@ -30,7 +30,7 @@ class Motor():
         pos2 = Motor.dxl_io.get_present_position([self.id])
         delta_ang = (pos2[0]-pos1[0])*math.pi/180
         if((pos1[0]<0 and pos2[0]>=0 and pos1[0]<-90 and pos2[0]>=90) or (pos1[0]>=0 and pos2[0]<0 and pos1[0]>=90 and pos2[0]<-90)):
-            print("GROOOOOOOS COM TON CUL")
+            #print("GROOOOOOOS COM TON CUL")
             deltaPos1 = 0
             deltaPos2 = 0
             if(pos1[0] < 0):
