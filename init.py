@@ -14,7 +14,7 @@ def main():
     lx, ly = vision()
     robot.stop()
     # robot.draw_ride(lx,ly)
-    time.sleep(5)
+    time.sleep(10)
 
     lx, ly = robot.odometry()
     # robot.draw_ride(lx,ly)
