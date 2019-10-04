@@ -101,3 +101,4 @@ while(i<3):
         break
 
 cv2.destroyAllWindows()
+robot.stop()
