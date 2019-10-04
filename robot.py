@@ -210,13 +210,7 @@ class Robot():
         try:
             lx = []
             ly = []
-            while(Motor.dxl_io.is_moving([self.motorLeft.id])[0] == False and Motor.dxl_io.is_moving([self.motorRight.id])[0] == False):
-                self.motorRight.calc_speed_motor()
-                self.motorLeft.calc_speed_motor()
-                print("immobile")
-                time.sleep(Robot.dt)
-            while(Motor.dxl_io.is_moving([self.motorLeft.id])[0] or Motor.dxl_io.is_moving([self.motorRight.id])[0]):
-                print("en mouvement")
+            while(True):
                 self.motorRight.calc_speed_motor()
                 self.motorLeft.calc_speed_motor()
                 self.tick_odom()
